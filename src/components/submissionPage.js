@@ -28,6 +28,7 @@ export default class submissionPage extends Component {
     return (
       <StyledSubmission>
         <img alt={'d55 logo'} src={logo}></img>
+        <h1>Meter Readings Uploader</h1>
         <UploadFile
           readings={readings}
           handleOnFileLoad={this.handleOnFileLoad}

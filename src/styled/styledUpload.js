@@ -1,54 +1,24 @@
 import styled from 'styled-components';
 export const StyledUpload = styled.div`
   button {
-    width: fit-content;
+    width: 10rem;
     text-transform: uppercase;
     font-weight: 600;
-    font-size: 0.8rem;
+    font-size: 1.2rem;
     padding: 0.4rem;
     align-items: center;
     color: white;
     background-color: #439ae2;
-    border-radius: 0.9rem;
+    border-radius: 0.5rem;
     border: none;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-    transition: all 0.2s linear;
+    transition: all 0.3s linear;
+    margin: 0.5rem;
   }
   button:hover {
-    transform: scale(1.03);
-    background-color: grey;
+    transform: scale(1.01);
+    background-color: #72b3e9;
     cursor: pointer;
-  }
-  form {
-    display: flex;
-    flex-direction: column;
-    align-items: space-between;
-    border-style: solid, 3;
-    padding: 1rem;
-    row-gap: 1rem;
-    align-items: center;
-
-    & label {
-      color: #4f6d7a;
-    }
-    & textarea {
-      max-width: 640px;
-      min-width: 200px;
-
-      @media screen and (min-width: 500px) {
-        width: 380px;
-      }
-
-      @media screen and (min-width: 800px) {
-        width: 600px;
-      }
-    }
-
-    & p {
-      margin: 0;
-      font-size: 0.9rem;
-      text-align: center;
-      line-height: 1rem;
-    }
+    color: #f8f9fa;
   }
 `;

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 export const StyledSubmission = styled.div`
   display: flex;
   flex-direction: column;
+  margin-top: 3rem;
   align-items: center;
   img {
     width: 15%;

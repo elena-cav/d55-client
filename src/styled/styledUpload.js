@@ -16,7 +16,6 @@ export const StyledUpload = styled.div`
     margin: 0.5rem;
   }
   .btn:hover {
-    transform: scale(1.01);
     background-color: #72b3e9;
     cursor: pointer;
     color: #f8f9fa;

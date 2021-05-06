@@ -3,7 +3,6 @@ import UploadFile from './uploadFile';
 import * as api from '../utils/api';
 import logo from '../images/d55.png';
 import { StyledSubmission } from '../styled/styledSubmission';
-import { Link } from 'react-router-dom';
 
 export default class submissionPage extends Component {
   state = {
@@ -46,7 +45,7 @@ export default class submissionPage extends Component {
               {readings.validSubmissions.map((reading) => {
                 return (
                   <div className="submission">
-                    <li key={readings.meter_reading_id}>
+                    <li key={reading.meter_reading_id}>
                       <p>Meter Reading ID: {reading.meter_reading_id}</p>
                       <p>Account ID: {reading.account_id}</p>
                       <p>Reading: {reading.reading}</p>
@@ -60,18 +59,19 @@ export default class submissionPage extends Component {
               {readings.invalidSubmissions.map((reading) => {
                 return (
                   <div className="submission">
-                    <li key={readings.meter_reading_id}>
-                      <p>Meter Reading ID: {reading.meter_reading_id}</p>
-                      <p>Account ID: {reading.account_id}</p>
-                      <p>Reading: {reading.reading}</p>
-                    </li>
+                    {reading.reading && (
+                      <li key={reading.meter_reading_id}>
+                        <p>Meter Reading ID: {reading.meter_reading_id}</p>
+                        <p>Account ID: {reading.account_id}</p>
+                        <p>Reading: {reading.reading}</p>
+                      </li>
+                    )}
                   </div>
                 );
               })}
             </ul>
           </div>
         )}
-        <Link></Link>
       </StyledSubmission>
     );
   }

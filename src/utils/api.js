@@ -10,14 +10,20 @@ export const postReadings = (body) => {
   });
 };
 
-export const getAccounts = () => {
-  return request.get('/accounts').then(({ data }) => {
-    return data;
-  });
+export const getAccounts = (sort_by, order) => {
+  return request
+    .get('/accounts', { params: { sort_by, order } })
+    .then(({ data }) => {
+      return data.accounts;
+    });
 };
 
-export const getReadings = () => {
-  return request.get('/readings').then(({ data }) => {
-    return data;
-  });
+export const getReadings = (sort_by, order) => {
+  console.log(sort_by, order);
+  return request
+    .get('/readings', { params: { sort_by, order } })
+    .then(({ data }) => {
+      console.log(data.readings);
+      return data.readings;
+    });
 };

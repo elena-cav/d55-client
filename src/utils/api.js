@@ -9,6 +9,13 @@ export const postReadings = (body) => {
     return data;
   });
 };
+export const getReadings = (sort_by, order) => {
+  return request
+    .get('/readings', { params: { sort_by, order } })
+    .then(({ data }) => {
+      return data.readings;
+    });
+};
 
 export const getAccounts = (sort_by, order) => {
   return request
@@ -18,12 +25,8 @@ export const getAccounts = (sort_by, order) => {
     });
 };
 
-export const getReadings = (sort_by, order) => {
-  console.log(sort_by, order);
-  return request
-    .get('/readings', { params: { sort_by, order } })
-    .then(({ data }) => {
-      console.log(data.readings);
-      return data.readings;
-    });
+export const patchAccount = (input, account_id) => {
+  return request.patch(`/accounts/${account_id}`, input).then(({ data }) => {
+    return data.account;
+  });
 };

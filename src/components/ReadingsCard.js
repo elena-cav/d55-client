@@ -5,9 +5,11 @@ export default class ReadingsCard extends Component {
     const { meter_reading_id, reading, account_id } = this.props;
     return (
       <StyledCard>
-        <p>Meter Reading ID: {meter_reading_id}</p>
-        <p>Reading: {reading}</p>
-        <p>Account ID: {account_id}</p>
+        <div className="card">
+          <p>Meter Reading ID: {meter_reading_id}</p>
+          <p>Reading: {reading}</p>
+          <p>Account ID: {account_id}</p>
+        </div>
       </StyledCard>
     );
   }

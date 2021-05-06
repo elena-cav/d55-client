@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import UploadFile from './uploadFile';
+import UploadFile from './UploadFile';
 import * as api from '../utils/api';
 import logo from '../images/d55.png';
 import { StyledSubmission } from '../styled/styledSubmission';
 
-export default class submissionPage extends Component {
+export default class SubmissionPage extends Component {
   state = {
     readings: null,
     err: null

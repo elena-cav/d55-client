@@ -1,29 +1,34 @@
 import React, { Component } from 'react';
-import * as api from '../utils/api';
-import ReadingsCard from './readingsCard';
-import { Ring } from 'react-awesome-spinners';
 import { StyledList } from '../styled/styledList';
-export default class ReadingsList extends Component {
+import * as api from '../utils/api';
+import AccountsCard from './AccountsCard';
+import { Ring } from 'react-awesome-spinners';
+
+export default class AccountsList extends Component {
   state = {
-    readings: [],
+    accounts: [],
     isLoading: true,
-    sort_by: 'meter_reading_id',
-    ascending: true
+    ascending: true,
+    sort_by: 'account_id',
+    submitted: false
   };
   componentDidMount() {
-    api.getReadings().then((readings) => {
-      this.setState({ readings, isLoading: false });
+    api.getAccounts().then((accounts) => {
+      this.setState({ accounts, isLoading: false });
     });
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { sort_by, ascending } = this.state;
-    if (prevState.sort_by !== sort_by || prevState.ascending !== ascending) {
+    const { sort_by, ascending, submitted } = this.state;
+    if (
+      prevState.sort_by !== sort_by ||
+      prevState.ascending !== ascending ||
+      submitted === true
+    ) {
       let order = ascending ? 'asc' : 'desc';
-      console.log(order);
-      console.log(sort_by);
-      api.getReadings(sort_by, order).then((readings) => {
-        this.setState({ readings, isLoading: false });
+
+      api.getAccounts(sort_by, order).then((accounts) => {
+        this.setState({ accounts, isLoading: false, submitted: false });
       });
     }
   }
@@ -38,7 +43,7 @@ export default class ReadingsList extends Component {
   };
 
   render() {
-    const { readings, isLoading, sort_by, ascending } = this.state;
+    const { accounts, isLoading, ascending, sort_by } = this.state;
     let arrow = ascending ? <p>⬇️</p> : <p>⬆️</p>;
 
     if (isLoading)
@@ -49,18 +54,9 @@ export default class ReadingsList extends Component {
       );
     return (
       <StyledList>
-        <h1>Readings</h1>
+        <h1>Accounts</h1>
         <h3>Sort by</h3>
         <div className="btnWrapper">
-          <button
-            className="sortBtn"
-            onClick={() => {
-              this.sortAccounts('meter_reading_id');
-            }}
-          >
-            Meter Reading ID{' '}
-            {sort_by === 'meter_reading_id' && <span>{arrow}</span>}
-          </button>
           <button
             className="sortBtn"
             onClick={() => {
@@ -72,19 +68,21 @@ export default class ReadingsList extends Component {
           <button
             className="sortBtn"
             onClick={() => {
-              this.sortAccounts('reading');
+              this.sortAccounts('surname');
             }}
           >
-            Reading {sort_by === 'reading' && <span>{arrow}</span>}
+            Surname {sort_by === 'surname' && <span>{arrow}</span>}
           </button>
         </div>
         <ul>
-          {readings.map(({ account_id, meter_reading_id, reading }) => {
+          {accounts.map(({ account_id, email, first_name, surname }) => {
             return (
-              <ReadingsCard
-                meter_reading_id={meter_reading_id}
+              <AccountsCard
                 account_id={account_id}
-                reading={reading}
+                email={email}
+                first_name={first_name}
+                surname={surname}
+                key={account_id}
               />
             );
           })}

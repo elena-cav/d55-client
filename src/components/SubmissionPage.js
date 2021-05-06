@@ -33,9 +33,10 @@ export default class SubmissionPage extends Component {
           handleOnFileLoad={this.handleOnFileLoad}
         />
         {err && (
-          <h2>
-            {err.response.status} {err.response.data.msg}
-          </h2>
+          <>
+            <h2>Error {err.response.status}</h2>
+            <h2>{err.response.data.msg}</h2>
+          </>
         )}
 
         {readings && (

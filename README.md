@@ -16,6 +16,10 @@ This is a frontend framework built as a tool for an Energy Company Account Manag
 - A user can visualise a list of all accounts and sort them by surname or account id
 - A user can edit name, surname and email fo each account
 
+### Error-handling
+
+- 404 on non-existent path/a path for a non-existent account
+
 ## Setup
 
 - Fork this repo

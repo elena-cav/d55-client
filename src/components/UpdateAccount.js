@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
 import * as api from '../utils/api';
 import { StyledCard } from '../styled/styledCard';
+import My404Component from './My404Component';
 export default class UpdateAccount extends Component {
   constructor(props) {
     super(props);
     const { state } = props.location;
-    const { first_name, surname, email } = state;
+    let first_name, surname, email;
+    if (state) {
+      first_name = state.first_name;
+      surname = state.surname;
+      email = state.email;
+    }
+
     const { account_id } = props.match.params;
     this.state = {
       first_name,
@@ -32,6 +39,8 @@ export default class UpdateAccount extends Component {
 
   render() {
     const { first_name, surname, email, successMessage } = this.state;
+    if (!first_name && !surname && !email)
+      return <My404Component page="account" />;
     return (
       <StyledCard>
         <form className="form" onSubmit={this.handleInput}>

@@ -7,7 +7,8 @@ import { StyledSubmission } from '../styled/styledSubmission';
 export default class SubmissionPage extends Component {
   state = {
     readings: null,
-    err: null
+    err: null,
+    data: null
   };
 
   handleOnFileLoad = (data) => {
@@ -15,6 +16,7 @@ export default class SubmissionPage extends Component {
     api
       .postReadings(this.state.data)
       .then((readings) => {
+        console.log(readings);
         this.setState({ readings });
       })
       .catch((err) => {
@@ -24,6 +26,8 @@ export default class SubmissionPage extends Component {
 
   render() {
     const { readings, err } = this.state;
+    console.dir(err);
+    console.log(readings);
     return (
       <StyledSubmission>
         <img alt={'d55 logo'} src={logo}></img>
@@ -32,6 +36,7 @@ export default class SubmissionPage extends Component {
           readings={readings}
           handleOnFileLoad={this.handleOnFileLoad}
         />
+
         {err && (
           <>
             <h2>Error {err.response.status}</h2>
@@ -39,7 +44,7 @@ export default class SubmissionPage extends Component {
           </>
         )}
 
-        {readings && (
+        {readings && readings.validSubmissions && readings.invalidSubmissions && (
           <div>
             <h2>Valid Submissions</h2>
             <ul>

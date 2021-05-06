@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 export const StyledUpload = styled.div`
-  button {
+  .btn {
     width: 10rem;
     text-transform: uppercase;
     font-weight: 600;
@@ -15,10 +15,14 @@ export const StyledUpload = styled.div`
     transition: all 0.3s linear;
     margin: 0.5rem;
   }
-  button:hover {
+  .btn:hover {
     transform: scale(1.01);
     background-color: #72b3e9;
     cursor: pointer;
     color: #f8f9fa;
+  }
+  .fileName {
+    margin-left: auto;
+    margin-right: auto;
   }
 `;

@@ -12,7 +12,7 @@ export default class submissionPage extends Component {
   };
 
   handleOnFileLoad = (data) => {
-    this.setState({ data });
+    this.setState({ readings: null, data, err: null });
     api
       .postReadings(this.state.data)
       .then((readings) => {
@@ -39,19 +39,19 @@ export default class submissionPage extends Component {
           </h2>
         )}
 
-        <Link to="/accounts">View Accounts</Link>
-
         {readings && (
           <div>
             <h2>Valid Submissions</h2>
             <ul>
               {readings.validSubmissions.map((reading) => {
                 return (
-                  <li key={readings.meter_reading_id}>
-                    <p>{reading.reading}</p>
-                    <p>{reading.meter_reading_id}</p>
-                    <p>{reading.account_id}</p>
-                  </li>
+                  <div className="submission">
+                    <li key={readings.meter_reading_id}>
+                      <p>Meter Reading ID: {reading.meter_reading_id}</p>
+                      <p>Account ID: {reading.account_id}</p>
+                      <p>Reading: {reading.reading}</p>
+                    </li>
+                  </div>
                 );
               })}
             </ul>
@@ -59,11 +59,13 @@ export default class submissionPage extends Component {
             <ul>
               {readings.invalidSubmissions.map((reading) => {
                 return (
-                  <li key={readings.meter_reading_id}>
-                    <p>{reading.reading}</p>
-                    <p>{reading.meter_reading_id}</p>
-                    <p>{reading.account_id}</p>
-                  </li>
+                  <div className="submission">
+                    <li key={readings.meter_reading_id}>
+                      <p>Meter Reading ID: {reading.meter_reading_id}</p>
+                      <p>Account ID: {reading.account_id}</p>
+                      <p>Reading: {reading.reading}</p>
+                    </li>
+                  </div>
                 );
               })}
             </ul>

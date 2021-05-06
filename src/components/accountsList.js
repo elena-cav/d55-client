@@ -1,26 +1,33 @@
 import React, { Component } from 'react';
-import { StyledAccountsList } from '../styled/styledAccountsList';
+import { StyledList } from '../styled/styledList';
 import * as api from '../utils/api';
 import AccountsCard from './accountsCard';
-import { Link } from 'react-router-dom';
+import { Ring } from 'react-awesome-spinners';
 
 export default class AccountsList extends Component {
   state = {
-    accounts: []
+    accounts: [],
+    isLoading: true
   };
   componentDidMount() {
     api.getAccounts().then((accounts) => {
-      this.setState({ accounts });
+      this.setState({ accounts, isLoading: false });
     });
   }
 
   render() {
-    const { accounts } = this.state;
+    const { accounts, isLoading } = this.state;
     console.log(accounts);
+    if (isLoading)
+      return (
+        <div className="ring">
+          <Ring />
+        </div>
+      );
     return (
-      <StyledAccountsList>
-        <Link to="/">Submit Readings</Link>
+      <StyledList>
         <ul>
+          <h1>Accounts</h1>
           {accounts.map(({ account_id, email, first_name, surname }) => {
             return (
               <AccountsCard
@@ -33,7 +40,7 @@ export default class AccountsList extends Component {
             );
           })}
         </ul>
-      </StyledAccountsList>
+      </StyledList>
     );
   }
 }

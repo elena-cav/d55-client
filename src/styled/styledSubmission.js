@@ -10,4 +10,7 @@ export const StyledSubmission = styled.div`
   h1 {
     color: #6c757d;
   }
+  .submission {
+    padding-bottom: 1rem;
+  }
 `;

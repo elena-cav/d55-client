@@ -15,3 +15,9 @@ export const getAccounts = () => {
     return data;
   });
 };
+
+export const getReadings = () => {
+  return request.get('/readings').then(({ data }) => {
+    return data;
+  });
+};

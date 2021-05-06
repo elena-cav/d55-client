@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import { StyledCard } from '../styled/styledCard';
-export default class AccountsCard extends Component {
+export default class ReadingsCard extends Component {
   render() {
-    const { first_name, email, surname, account_id } = this.props;
+    const { meter_reading_id, reading, account_id } = this.props;
     return (
       <StyledCard>
-        <p>
-          {first_name} {surname}
-        </p>
-        <p>Email: {email}</p>
+        <p>Meter Reading ID: {meter_reading_id}</p>
+        <p>Reading: {reading}</p>
         <p>Account ID: {account_id}</p>
       </StyledCard>
     );

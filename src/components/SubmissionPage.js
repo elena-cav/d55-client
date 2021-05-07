@@ -1,36 +1,40 @@
 import React, { Component } from 'react';
 import UploadFile from './UploadFile';
 import * as api from '../utils/api';
-import logo from '../images/d55.png';
 import { StyledSubmission } from '../styled/styledSubmission';
+import { Ring } from 'react-awesome-spinners';
 
 export default class SubmissionPage extends Component {
   state = {
     readings: null,
     err: null,
-    data: null
+    data: null,
+    isLoading: false
   };
 
   handleOnFileLoad = (data) => {
-    this.setState({ readings: null, data, err: null });
+    this.setState({ readings: null, data, err: null, isLoading: true });
     api
       .postReadings(this.state.data)
       .then((readings) => {
-        console.log(readings);
-        this.setState({ readings });
+        this.setState({ readings, isLoading: false });
       })
       .catch((err) => {
-        this.setState({ err });
+        this.setState({ err, isLoading: false });
       });
   };
 
   render() {
-    const { readings, err } = this.state;
-    console.dir(err);
-    console.log(readings);
+    const { readings, err, isLoading } = this.state;
+    if (isLoading)
+      return (
+        <div className="ring">
+          <Ring />
+        </div>
+      );
+
     return (
       <StyledSubmission>
-        <img alt={'d55 logo'} src={logo}></img>
         <h1>Meter Readings Uploader</h1>
         <UploadFile
           readings={readings}
@@ -40,42 +44,44 @@ export default class SubmissionPage extends Component {
         {err && (
           <>
             <h2>Error {err.response.status}</h2>
-            <h2>{err.response.data.msg}</h2>
+            {err.response.status === 400 ? (
+              <h2>{err.response.data.msg}</h2>
+            ) : (
+              <h2>{err.response.statusText}, max file size: 500 records</h2>
+            )}
           </>
         )}
 
         {readings && readings.validSubmissions && readings.invalidSubmissions && (
           <div>
             <h2>Valid Submissions</h2>
-            <ul>
+            <ol>
               {readings.validSubmissions.map((reading) => {
                 return (
-                  <div className="submission">
-                    <li key={reading.meter_reading_id}>
-                      <p>Meter Reading ID: {reading.meter_reading_id}</p>
-                      <p>Account ID: {reading.account_id}</p>
-                      <p>Reading: {reading.reading}</p>
-                    </li>
-                  </div>
+                  <li className="submission" key={reading.meter_reading_id}>
+                    <p>Meter Reading ID: {reading.meter_reading_id}</p>
+                    <p>Account ID: {reading.account_id}</p>
+                    <p>Reading: {reading.reading}</p>
+                  </li>
                 );
               })}
-            </ul>
+            </ol>
             <h2>Invalid Submissions</h2>
-            <ul>
+            <ol>
               {readings.invalidSubmissions.map((reading) => {
                 return (
-                  <div className="submission">
+                  <React.Fragment key={reading.meter_reading_id}>
                     {reading.reading && (
-                      <li key={reading.meter_reading_id}>
+                      <li className="submission">
                         <p>Meter Reading ID: {reading.meter_reading_id}</p>
                         <p>Account ID: {reading.account_id}</p>
                         <p>Reading: {reading.reading}</p>
                       </li>
                     )}
-                  </div>
+                  </React.Fragment>
                 );
               })}
-            </ul>
+            </ol>
           </div>
         )}
       </StyledSubmission>

@@ -12,15 +12,12 @@ export const Global = styled.div`
     text-decoration: none;
   }
 
-  li {
-    list-style: none;
-  }
   ul {
     padding: 0;
   }
   .ring div div {
     border-top-color: #0074d5;
     position: relative;
-    top: 100%;
+    top: 400%;
   }
 `;

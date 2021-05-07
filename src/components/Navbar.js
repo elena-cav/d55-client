@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { StyledNavBar } from '../styled/styledNavBar';
+import logo from '../images/d55 teal.png';
 function Navbar() {
   return (
     <StyledNavBar>
@@ -14,6 +15,7 @@ function Navbar() {
         <Link to="/readings" className="text nav-link">
           Readings
         </Link>
+        <img alt="d55 logo" src={logo}></img>
       </nav>
     </StyledNavBar>
   );

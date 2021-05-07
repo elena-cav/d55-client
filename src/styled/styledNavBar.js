@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 export const StyledNavBar = styled.div`
+  position: relative;
   .Nav {
     margin: 0;
     padding: 1rem;
@@ -24,9 +25,6 @@ export const StyledNavBar = styled.div`
     text-transform: uppercase;
     text-decoration: none;
   }
-  .nav-link:hover {
-    color: white;
-  }
 
   .text.nav-link:after {
     background: none repeat scroll 0 0 transparent;
@@ -43,5 +41,17 @@ export const StyledNavBar = styled.div`
   .nav-link:hover:after {
     width: 100%;
     left: 0;
+  }
+  img {
+    display: none;
+  }
+  @media screen and (min-width: 480px) {
+    img {
+      display: block;
+      width: 50px;
+      position: absolute;
+      right: 50px;
+      top: 7px;
+    }
   }
 `;

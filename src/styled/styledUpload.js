@@ -21,7 +21,6 @@ export const StyledUpload = styled.div`
     color: #f8f9fa;
   }
   .fileName {
-    margin-left: auto;
-    margin-right: auto;
+    text-align: center;
   }
 `;

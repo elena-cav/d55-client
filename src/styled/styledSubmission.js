@@ -11,6 +11,10 @@ export const StyledSubmission = styled.div`
   h1 {
     color: #6c757d;
   }
+
+  h2 {
+    text-align: center;
+  }
   .submission {
     padding-bottom: 1rem;
   }

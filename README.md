@@ -19,6 +19,8 @@ This is a frontend framework built as a tool for an Energy Company Account Manag
 ### Error-handling
 
 - 404 on non-existent path/a path for a non-existent account
+- 400 wrong CSV format
+- 413 Payload too large - CSV can be 500 records long max
 
 ## Setup
 

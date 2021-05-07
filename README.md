@@ -22,6 +22,15 @@ This is a frontend framework built as a tool for an Energy Company Account Manag
 - 400 wrong CSV format
 - 413 Payload too large - CSV can be 500 records long max
 
+## Technology
+
+1. React.js
+2. Axios
+3. React Router Dom
+4. Styled Components
+5. React Papaparse
+6. React Awesome Spinners
+
 ## Setup
 
 - Fork this repo
